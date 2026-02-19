@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Dharshan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(#0b0033, #240046);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from {opacity: 0.3;}
+  to {opacity: 1;}
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 50px;
+  right: 80px;
+  width: 80px;
+  height: 80px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  box-shadow: 0 0 40px white;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.active { display: flex; }
+
+/* Buttons */
+button {
+  padding: 12px 22px;
+  margin: 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.yes { background: white; color: purple; }
+.no { background: red; color: white; position: relative; }
+
+/* Title */
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  margin-bottom: 30px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 25px pink, 0 0 40px purple; }
+}
+
+/* Cake */
+.cake {
+  width: 180px;
+  height: 140px;
+  position: relative;
+  animation: rotate 6s linear infinite;
+  margin-top: 20px;
+}
+
+@keyframes rotate {
+  from {transform: rotateY(0);}
+  to {transform: rotateY(360deg);}
+}
+
+.layer {
+  position: absolute;
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.l1 { bottom: 0; background: #ff4d6d; }
+.l2 { bottom: 35px; background: #ff85a1; width: 150px; left: 15px; }
+.l3 { bottom: 70px; background: #ffc2d1; width: 120px; left: 30px; }
+
+/* Candle */
+.candle {
+  width: 10px;
+  height: 35px;
+  background: white;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flame {
+  width: 12px;
+  height: 18px;
+  background: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: -18px;
+  animation: flicker 0.2s infinite;
+}
+
+@keyframes flicker {
+  50% { transform: scale(1.2); }
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  color: pink;
+  animation: floatHeart 6s linear infinite;
+}
+
+@keyframes floatHeart {
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Typing Paragraph */
+.message {
+  max-width: 80%;
+  line-height: 1.6;
+  font-size: 18px;
+  animation: fade 2s ease-in;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+
+<!-- Screen 1 -->
+<div class="screen active" id="s1">
+  <h1 onclick="start()">Click to Open 💜</h1>
+</div>
+
+<!-- Screen 2 -->
+<div class="screen" id="s2">
+  <h2>Do you want to go further?</h2>
+  <button class="yes" onclick="next(3)">YES</button>
+  <button class="no" id="no1">NO</button>
+</div>
+
+<!-- Screen 3 -->
+<div class="screen" id="s3">
+  <h2 onclick="next(4)">Open your gift 🎁</h2>
+</div>
+
+<!-- Screen 4 -->
+<div class="screen" id="s4">
+  <div class="title">Happy Birthday Dharshan mama</div>
+
+  <div class="cake">
+    <div class="layer l1"></div>
+    <div class="layer l2"></div>
+    <div class="layer l3"></div>
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+
+  <h2 onclick="blow()">Click to blow the candle</h2>
+</div>
+
+<!-- Screen 5 -->
+<div class="screen" id="s5">
+  <h1 class="title">🎉 Happy Birthday Dharshan 🎉</h1>
+  <button onclick="next(6)">Next</button>
+</div>
+
+<!-- Screen 6 -->
+<div class="screen" id="s6">
+  <h2>Ready to read a big message?</h2>
+  <button class="yes" onclick="next(7)">Yesssss</button>
+  <button class="no" id="no2">Nooooo</button>
+</div>
+
+<!-- Screen 7 -->
+<div class="screen" id="s7">
+  <p class="message">
+Happy birthday, my love! 💜<br><br>
+You are the reason my world is so bright, and I am so lucky to share this journey with you.<br><br>
+Every single day with you is special, but today is all about celebrating you and the incredible person you are.<br><br>
+I hope this year brings you everything you wish for.<br><br>
+Life is sweeter with you by my side.<br><br>
+Thank you for loving me so perfectly, I am so lucky to call you mine. ❤️
+  </p>
+  <button onclick="next(8)">Next</button>
+</div>
+
+<!-- Screen 8 -->
+<div class="screen" id="s8">
+  <h1 class="title">❤️ Happy Birthday once again my love ❤️</h1>
+</div>
+
+<script>
+function start(){
+  document.getElementById("music").play();
+  next(2);
+}
+
+function next(n){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById("s"+n).classList.add("active");
+}
+
+function blow(){
+  document.getElementById("flame").style.display="none";
+  fireworks();
+  setTimeout(()=>next(5),1200);
+}
+
+/* Moving NO buttons */
+function move(btn){
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"vw";
+  btn.style.top=Math.random()*80+"vh";
+}
+document.getElementById("no1").onmouseover=function(){move(this)};
+document.getElementById("no2").onmouseover=function(){move(this)};
+
+/* Hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},400);
+
+/* Stars */
+for(let i=0;i<80;i++){
+  let s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  document.body.appendChild(s);
+}
+
+/* Fireworks */
+function fireworks(){
+  for(let i=0;i<20;i++){
+    let f=document.createElement("div");
+    f.innerHTML="✨";
+    f.style.position="absolute";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    f.style.fontSize="20px";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+</script>
+
+</body>
+</html>
